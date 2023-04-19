@@ -1,7 +1,5 @@
 // Imports
-const {
-  CreateBucketCommand
-} = require('@aws-sdk/client-s3')
+const { CreateBucketCommand } = require('@aws-sdk/client-s3')
 const { sendS3Command } = require('./helpers')
 
 // Declare local variables
@@ -17,7 +15,12 @@ async function execute () {
 }
 
 async function createBucket (bucketName) {
-  // TODO: Create s3 bucket
+  const params = {
+    Bucket: bucketName,
+    ACL: 'public-read'
+  }
+  const command = new CreateBucketCommand(params)
+  return sendS3Command(command)
 }
 
 execute()

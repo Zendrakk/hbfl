@@ -1,7 +1,5 @@
 // Imports
-const {
-  CreateDBInstanceCommand
-} = require('@aws-sdk/client-rds')
+const { CreateDBInstanceCommand } = require('@aws-sdk/client-rds')
 const {
   createSecurityGroup,
   sendRDSCommand
@@ -21,7 +19,18 @@ async function execute () {
 }
 
 async function createDatabase (dbName, sgId) {
-  // TODO: Create the db instance
+  const params = {
+    AllocatedStorage: 5,  // 5 Gb is the minimum size for a mysql DB in RDS
+    DBInstanceClass: 'db.t2.micro',
+    DBInstanceIdentifier: dbName,
+    Engine: 'mysql',
+    DBName: dbName,
+    VpcSecurityGroupIds: [ sgId ],
+    MasterUsername: 'admin',
+    MasterUserPassword: 'password'
+  }
+  const command = new CreateDBInstanceCommand(params)
+  return sendRDSCommand(command)
 }
 
 execute()

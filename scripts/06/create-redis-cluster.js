@@ -1,7 +1,5 @@
 // Imports
-const {
-  CreateCacheClusterCommand
-} = require('@aws-sdk/client-elasticache')
+const { CreateCacheClusterCommand } = require('@aws-sdk/client-elasticache')
 const {
   createSecurityGroup,
   sendElastiCacheCommand
@@ -18,7 +16,15 @@ async function execute () {
 }
 
 async function createRedisCluster (clusterName, sgId) {
-  // TODO: Create redis cache cluster
+  const params = {
+    CacheClusterId: clusterName,
+    CacheNodeType: 'cache.t2.micro',
+    Engine: 'redis',
+    NumCacheNodes: 1,
+    SecurityGroupIds: [ sgId ]
+  }
+  const command = new CreateCacheClusterCommand(params)
+  return sendElastiCacheCommand(command)
 }
 
 execute()

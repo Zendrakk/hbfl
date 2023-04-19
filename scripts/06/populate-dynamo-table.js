@@ -1,7 +1,5 @@
 // Imports
-const {
-  BatchWriteCommand
-} = require('@aws-sdk/lib-dynamodb')
+const { BatchWriteCommand } = require('@aws-sdk/lib-dynamodb')
 const {
   getHamsterData,
   getRaceData,

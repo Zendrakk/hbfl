@@ -1,7 +1,5 @@
 // Imports
-const {
-  CreateTableCommand
-} = require('@aws-sdk/client-dynamodb')
+const { CreateTableCommand } = require('@aws-sdk/client-dynamodb')
 const { sendDynamoDBCommand } = require('./helpers')
 
 async function execute () {
