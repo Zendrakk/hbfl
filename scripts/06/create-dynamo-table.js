@@ -15,7 +15,27 @@ async function execute () {
 }
 
 async function createTable (tableName) {
-  // TODO: Create dynamodb table
+  const params = {
+    TableName: tableName,
+    AttributeDefinitions: [
+      {
+        AttributeName: 'id',
+        AttributeType: 'N'  // S = String, N = Number, B = Binary
+      }
+    ],
+    KeySchema: [
+      {
+        AttributeName: 'id',
+        KeyType: 'HASH'
+      }
+    ],
+    ProvisionedThroughput: {
+      ReadCapacityUnits: 5,
+      WriteCapacityUnits: 5
+    }
+  }
+  const command = new CreateTableCommand(params)
+  return sendDynamoDBCommand(command)
 }
 
 execute()
