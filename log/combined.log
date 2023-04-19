@@ -11,3 +11,4 @@
 {"level":"error","message":"Server error: unknown"}
 {"level":"error","message":"Server error: unknown"}
 {"level":"error","message":"Request error: Not Found"}
+{"level":"error","message":"Server could not start. Error: Error: Connection is closed."}
