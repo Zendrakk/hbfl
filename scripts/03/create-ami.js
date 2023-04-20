@@ -6,7 +6,7 @@ function sendCommand (command) {
   return client.send(command)
 }
 
-createImage('<instanceid>', 'hamsterImage')
+createImage('i-xxxxxxxxxxxxxxxx', 'hamsterImage')
   .then(() => console.log('Complete'))
 
 async function createImage (seedInstanceId, imageName) {

@@ -70,17 +70,19 @@ async function createKeyPair (keyName) {
 
 async function createInstance (sgName, keyName) {
   const params = {
-    ImageId: 'ami-02d5619017b3e5162',
+    ImageId: 'ami-xxxxxxxxxxxxxxxxx',
     InstanceType: 't2.micro',
     KeyName: keyName,
     MaxCount: 1,
     MinCount: 1,
     SecurityGroups: [ sgName ],
     IamInstanceProfile: {
-      Arn: 'arn:aws:iam::xxxxxxxxxxxx:instance-profile/hamsterLTRole_profile'
+      Arn: 'arn:aws:iam::xxxxxxxxxxxxxxx:instance-profile/hamsterLTRole_profile'
     },
-    UserData: 'IyEvYmluL2Jhc2gNCmN1cmwgLS1zaWxlbnQgLS1sb2NhdGlvbiBodHRwczovL3JwbS5ub2Rlc291cmNlLmNvbS9zZXR1cF8xNi54IHwgc3VkbyBiYXNoIC0NCnN1ZG8geXVtIGluc3RhbGwgLXkgbm9kZWpzDQpzdWRvIHl1bSBpbnN0YWxsIC15IGdpdA0KY2QgaG9tZS9lYzItdXNlcg0KZ2l0IGNsb25lIGh0dHBzOi8vZ2l0aHViLmNvbS9aZW5kcmFray9oYmZsLmdpdA0KY2QgaGJmbA0KbnBtIGkNCm5wbSBydW4gc3RhcnQ='
+    UserData: ''
   }
   const command = new RunInstancesCommand(params)
   return sendCommand(command)
 }
+
+execute ()
