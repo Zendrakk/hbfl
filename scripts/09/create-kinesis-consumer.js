@@ -7,7 +7,7 @@ const helpers = require('./helpers')
 
 // Declare local variables
 const functionName = 'hamster-kinesis-stream-consumer'
-const kinesisArn = '/* TODO: Add your kinesis ARN */'
+const kinesisArn = 'arn:aws:kinesis:us-west-2:224809833513:stream/hamster-race-results'
 
 async function execute () {
   try {
@@ -42,7 +42,10 @@ async function createLambdaFunction (roleArn, lambdaName, zippedCode) {
 
 function createTrigger (kinesisArn, lambdaName) {
   const params = {
-    // TODO: Add properties for trigger
+    EventSourceArn: kinesisArn,
+    FunctionName: lambdaName,
+    StartingPosition: 'LATEST',
+    BatchSize: 100  // How many records retrieved at a time from kinesis stream, also max value is 100
   }
 
   const command = new CreateEventSourceMappingCommand(params)

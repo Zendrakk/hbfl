@@ -1,7 +1,5 @@
 // Imports
-const {
-  CreateStreamCommand
-} = require('@aws-sdk/client-kinesis')
+const { CreateStreamCommand } = require('@aws-sdk/client-kinesis')
 const { sendKinesisCommand: sendCommand } = require('./helpers')
 
 // Declare local variables
@@ -17,7 +15,12 @@ async function execute () {
 }
 
 async function createKinesisStream (streamName) {
-  // TODO: Create kinesis stream
+  const params = {
+    ShardCount: 1,
+    StreamName: streamName
+  }
+  const command = new CreateStreamCommand(params)
+  return sendCommand(command)
 }
 
 execute()
