@@ -88,7 +88,7 @@ async function createMethodIntegration (resourceId, method, api, path) {
     restApiId: api.id,
     integrationHttpMethod: method,
     type: 'HTTP_PROXY',
-    uri: 'http://hamsterLB-1975913547.us-west-2.elb.amazonaws.com'
+    uri: 'http://hamsterLB-xxxxxxxxxx.us-west-2.elb.amazonaws.com'
   }
 
   if (path) {

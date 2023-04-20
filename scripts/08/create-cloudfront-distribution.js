@@ -6,7 +6,7 @@ const {
 } = require('./cloudfront-parameters')
 const { sendCloudFrontCommand: sendCommand } = require('./helpers')
 
-const bucketName = 'hamster-bucket-cliff-tutorial-1'
+const bucketName = 'hamster-bucket-xxxxx-tutorialxx'
 
 async function execute () {
   try {

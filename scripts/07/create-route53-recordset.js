@@ -5,7 +5,7 @@ const {
 const { sendRoute53Command: sendCommand } = require('./helpers')
 
 // Declare local variables
-const hzId = '/hostedzone/Z00060171CP4VEG3TUG0E'
+const hzId = '/hostedzone/Z00060171CPxxxxxxxxxx'
 
 async function execute () {
   try {
@@ -27,9 +27,9 @@ async function createRecordSet (hzId) {
             Name: 'hbfl.online',
             Type: 'A',
             AliasTarget: {
-              DNSName: 'hamsterLB-1975913547.us-west-2.elb.amazonaws.com',
+              DNSName: 'hamsterLB-xxxxxxxxxx.us-west-2.elb.amazonaws.com',
               EvaluateTargetHealth: false,
-              HostedZoneId: 'Z1H1FL5HABSF5'
+              HostedZoneId: 'Z1Hxxxxxxxxxx'
             }
           }
         }
