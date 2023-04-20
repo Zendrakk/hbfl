@@ -1,4 +1,4 @@
-const base = 'https://hamster-bucket-cliff-tutorial-1.s3.us-west-2.amazonaws.com'
+const base = 'https://d3cu47fzabm1yf.cloudfront.net'
 module.exports = {
   hamster1: base + '/images/hamster-1-final.png',
   hamster2: base + '/images/hamster-2-final.png',

@@ -32,24 +32,74 @@ async function execute () {
   }
 }
 
+// NOTE: The API Gateway SDK uses camel case instead of Pascal case for param properties
+
 async function createRestApi (apiName) {
-  // TODO: Create a new rest API
+  const params = {
+    name: apiName
+  }
+  const command = new CreateRestApiCommand(params)
+  return sendCommand(command)
 }
 
 async function getRootResource (api) {
-  // TODO: Get the resources and find the resource with path '/'
+  const params = {
+    restApiId: api.id
+  }
+  const command = new GetResourcesCommand(params)
+  const response = await sendCommand(command)
+  const rootResource = response.items.find(r => r.path === '/')  // the slash identies the root resource
+  return rootResource.id
 }
 
 async function createResource (parentResourceId, resourcePath, api) {
-  // TODO: Create the resource and return the resource id
+  const params = {
+    parentId: parentResourceId,
+    pathPart: resourcePath,
+    restApiId: api.id
+  }
+  const command = new CreateResourceCommand(params)
+  const response = await sendCommand(command)
+  return response.id
 }
 
 async function createResourceMethod (resourceId, method, api, path) {
-  // TODO: Put the method and return the resourceId argument
+  const params = {
+    authorizationType: 'NONE',  // want open to the public, so 'NONE'
+    httpMethod: method,
+    resourceId: resourceId,
+    restApiId: api.id
+  }
+
+  if (path) {
+    params.requestParameters = {
+      [`method.request.path.${path}`]: true  // back-ticks are used to create a string template to assign dynamically
+    }
+  }
+
+  const command = new PutMethodCommand(params)
+  return sendCommand(command)  // Won't actually use the return value, but doesn't hurt to just return it
 }
 
 async function createMethodIntegration (resourceId, method, api, path) {
-  // TODO: Put the integration and return the resourceId argument
+  const params = {
+    httpMethod: method,
+    resourceId: resourceId,
+    restApiId: api.id,
+    integrationHttpMethod: method,
+    type: 'HTTP_PROXY',
+    uri: 'http://hamsterLB-1975913547.us-west-2.elb.amazonaws.com'
+  }
+
+  if (path) {
+    params.uri += `/{${path}}`
+    params.requestParameters = {
+      [`integration.request.path.${path}`]: `method.request.path.${path}`
+    }
+  }
+
+  const command = new PutIntegrationCommand(params)
+  return sendCommand(command)
 }
 
 execute()

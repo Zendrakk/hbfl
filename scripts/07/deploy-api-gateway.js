@@ -6,7 +6,7 @@ const { sendAPIGatewayCommand: sendCommand } = require('./helpers')
 
 // Declare local variables
 const stage = 'prod'
-const apiId = '/* TODO: Add api id */'
+const apiId = 'mbas4d7rcj'
 
 async function execute () {
   try {
@@ -18,7 +18,12 @@ async function execute () {
 }
 
 function createDeployment (apiId, stageName) {
-  // TODO: Create deployment
+  const params = {
+    restApiId: apiId,
+    stageName: stageName
+  }
+  const command = new CreateDeploymentCommand(params)
+  return sendCommand(command)
 }
 
 execute()

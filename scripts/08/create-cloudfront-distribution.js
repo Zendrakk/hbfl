@@ -6,7 +6,7 @@ const {
 } = require('./cloudfront-parameters')
 const { sendCloudFrontCommand: sendCommand } = require('./helpers')
 
-const bucketName = '/* TODO: Add your bucket name */'
+const bucketName = 'hamster-bucket-cliff-tutorial-1'
 
 async function execute () {
   try {
@@ -18,7 +18,20 @@ async function execute () {
 }
 
 async function createDistribution (bucketName) {
-  // TODO: Create CloudFront Distribution
+  const params = {
+    DistributionConfig: {
+      CallerReference: `${Date.now()}`,
+      Comment: 'HBFL Distribution',
+      DefaultCacheBehavior: defaultCacheBehavior(bucketName),
+      Origins: origins(bucketName),
+      HttpVersion: 'http2',
+      PriceClass: 'PriceClass_100',  // Cheapest, and only US, Canada, & Europe
+      IsIPV6Enabled: true,
+      Enabled: true
+    }
+  }
+  const command = new CreateDistributionCommand(params)
+  return sendCommand(command)
 }
 
 execute()
