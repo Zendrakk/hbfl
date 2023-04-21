@@ -27,7 +27,7 @@ async function createDatabase (dbName, sgId) {
     DBName: dbName,
     VpcSecurityGroupIds: [ sgId ],
     MasterUsername: 'admin',
-    MasterUserPassword: 'password'
+    MasterUserPassword: 'xxxxxxxxxxxxxxx'
   }
   const command = new CreateDBInstanceCommand(params)
   return sendRDSCommand(command)

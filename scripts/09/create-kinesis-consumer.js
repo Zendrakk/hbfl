@@ -7,7 +7,7 @@ const helpers = require('./helpers')
 
 // Declare local variables
 const functionName = 'hamster-kinesis-stream-consumer'
-const kinesisArn = 'arn:aws:kinesis:us-west-2:224809833513:stream/hamster-race-results'
+const kinesisArn = 'arn:aws:kinesis:us-west-2:xxxxxxxxxxxxxx:stream/hamster-race-results'
 
 async function execute () {
   try {

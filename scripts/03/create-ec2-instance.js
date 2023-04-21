@@ -13,9 +13,8 @@ function sendCommand (command) {
   return client.send(command)
 }
 
-// Declare local variables
-const sgName = 'hamster_sg'
-const keyName = 'hamster_key'
+const sgName = 'hamster_sg6'
+const keyName = 'hamster_key6'
 
 // Do all the things together
 async function execute () {
@@ -50,8 +49,8 @@ async function createSecurityGroup (sgName) {
       },
       {
         IpProtocol: 'tcp',
-        FromPort: 3000,
-        ToPort: 3000,
+        FromPort: 4200,
+        ToPort: 4200,
         IpRanges: [{ CidrIp: '0.0.0.0/0' }]
       }
     ]
@@ -70,14 +69,14 @@ async function createKeyPair (keyName) {
 
 async function createInstance (sgName, keyName) {
   const params = {
-    ImageId: 'ami-xxxxxxxxxxxxxxxxx',
+    ImageId: 'ami-02d5619017b3e5162',
     InstanceType: 't2.micro',
     KeyName: keyName,
     MaxCount: 1,
     MinCount: 1,
     SecurityGroups: [ sgName ],
     IamInstanceProfile: {
-      Arn: 'arn:aws:iam::xxxxxxxxxxxxxxx:instance-profile/hamsterLTRole_profile'
+      Arn: 'arn:aws:iam::xxxxxxxxxxxxxx:instance-profile/hamsterLTRole_profile'
     },
     UserData: ''
   }

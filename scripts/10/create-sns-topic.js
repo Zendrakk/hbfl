@@ -1,7 +1,5 @@
 // Imports
-const {
-  CreateTopicCommand
-} = require('@aws-sdk/client-sns')
+const { CreateTopicCommand } = require('@aws-sdk/client-sns')
 const { sendSNSCommand: sendCommand } = require('./helpers')
 
 // Declare local variables
@@ -17,7 +15,11 @@ async function execute () {
 }
 
 function createTopic (topicName) {
-  // TODO: Create SNS topic
+  const params = {
+    Name: topicName
+  }
+  const command = new CreateTopicCommand(params)
+  return sendCommand(command)
 }
 
 execute()
